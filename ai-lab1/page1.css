@@ -31,30 +31,44 @@ body {
     h1{
         position: absolute;
         background-color: rgb(100, 198, 231);
+        text-shadow: 2px 2px 2px gray;
     }
     .container{
-        gap: 20px;
         display: grid;
         width: 100%; 
         margin: auto;
-        min-height: 40vw;
         max-width: 1440px;
-        padding: 0px 20px;
+        padding: 0px 10px;
     }
     .wrap{
+        margin-top: 20px;
         display: grid;
         grid-template-columns: 50% 50%; 
+        width: 100%;
     }
-    .item1{
+    img{
         height: auto;
         margin-left: 30px;      
         width: 450px;
         display: flex;
     }
-    .text{
+    .text1{
         color: black;
         max-width: 500px;
-        width: 60%;
+        width: 100%;
+    }
+    h2{
+        background-color: rgba(100, 198, 231, 0.886);
+        color: white;
+        margin-top: 0;
+        margin-bottom: 20px;
+    }
+    .wrap2{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: 50% 50%; 
+        width: 100%;
     }
     footer{
         background-color: rgb(100, 198, 231);
@@ -68,3 +82,28 @@ body {
         margin: 0;
         padding: 0;
     }
+    @media only screen and (max-width: 991px){
+        .text1{
+            margin-top: 30px;
+            max-width: 450px;
+            width: 100%;
+        }
+        .container{
+            display: block;
+            padding: 0px 16px;
+        }
+        .wrap{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        img{
+            width: 100%;
+            margin: 0;
+        }
+        .wrap2{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+        }
