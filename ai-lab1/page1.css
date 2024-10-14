@@ -33,6 +33,13 @@ body {
         background-color: rgb(100, 198, 231);
         text-shadow: 2px 2px 2px gray;
     }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+    a:hover{
+        color: white;
+    }
     .container{
         display: grid;
         width: 100%; 
@@ -56,6 +63,7 @@ body {
         color: black;
         max-width: 500px;
         width: 100%;
+        font-family: Times New Roman;
     }
     h2{
         background-color: rgba(100, 198, 231, 0.886);
