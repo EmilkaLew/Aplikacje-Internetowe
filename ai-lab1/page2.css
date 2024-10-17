@@ -23,7 +23,7 @@ body {
     .header {
         width: 100%;
         padding: 10px;
-        background-color: rgba(30, 245, 41, 0.212);
+        background-color: rgba(85, 209, 91, 0.432);
     }
     .menu{
         float: right;
@@ -82,15 +82,21 @@ body {
         color: black;
         max-width: 500px;
         width: 100%;
-        background-color: rgba(30, 245, 41, 0.445);
-        box-shadow: 9px -3px 33px -1px rgba(146, 57, 5, 0.795);
+        background-color: rgba(82, 178, 87, 0.845);
+        box-shadow: 9px -3px 33px -1px rgb(135, 72, 39);
         border-radius: 10px;
     }
     h2{
-        
-        color: black;
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        color: rgb(135, 72, 39);
         margin-top: 10px;
         margin-bottom: 20px;
+        text-align: center;
+    }
+    h3{
+        font-family: "Trebuchet MS", Helvetica, sans-serif;
+        text-align: center;
+        margin-bottom: 10px;
     }
     .wrap2{
         margin-top: 30px;
@@ -107,12 +113,23 @@ body {
         margin: auto 0 0 0;
     }
     p{
-        color: white;
+        color: rgb(226, 239, 47);
         font-size: 16px;
         font-family: Lucida Handwriting;
         margin: 0;
         padding: 0;
+        text-align: center;
     }
+
+    @media only screen and (max-width: 490px){
+        .menu{
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+            margin-right: 0;
+        }
+    }
+
     @media only screen and (max-width: 991px){
         .text1{
             margin-top: 30px;
