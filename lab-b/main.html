@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css">
+        <title>LAB B</title>
+    </head>
+    <body>
+        <div class="task-manager">
+            <input type="text" id="search" placeholder="Search" oninput="filterTasks()">
+            <ul id="taskList"></ul>
+            <div class="add-task">
+                <input type="text" id="newTask" placeholder="New task">
+                <input type="date" id="taskDate">
+                <button onclick="addTask()">Add</button>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
