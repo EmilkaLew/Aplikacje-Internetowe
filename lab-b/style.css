@@ -1,5 +1,5 @@
 body{
-    background-color: bisque;
+    background-color: rgb(146, 106, 240);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,7 +13,7 @@ body{
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 8px 30px 3px rgba(66, 68, 90, 1);
 }
 
 #taskList{
@@ -26,11 +26,13 @@ body{
     justify-content: space-between;
     align-items: center;
     padding: 5px 0;
+    margin-bottom: 5px;
 }
 
 .task-input, .date-input{
     flex: 1;
     margin-right: 10px;
+    margin-left: 20px;
     border: none;
     background: none;
     border-bottom: 1px solid #ddd;

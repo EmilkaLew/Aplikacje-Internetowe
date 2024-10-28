@@ -108,3 +108,23 @@ function highlightSearch(text) {
    const regex = new RegExp(`(${searchQuery})`, 'gi');
    return text.replace(regex, '<span class="highlight">$1</span>');
 }
+function saveEdit(index, field, inputElement) {
+   const tasks = getTasks();
+   if (field === 'text') {
+       const newText = inputElement.value.trim();
+       if (newText.length >= 3 && newText.length <= 255) {
+           tasks[index].text = newText;
+       } else {
+           alert('Task must be between 3 and 255 characters.');
+       }
+   } else if (field === 'date') {
+       const newDate = inputElement.value;
+       if (!newDate || new Date(newDate) >= new Date()) {
+           tasks[index].date = newDate;
+       } else {
+           alert('The date must be in the future.');
+       }
+   }
+   saveTasks(tasks);
+   displayTasks(tasks);
+}
