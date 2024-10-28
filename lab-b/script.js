@@ -34,7 +34,6 @@ function displayTasks(tasks) {
     taskList.innerHTML = '';
     tasks.forEach((task, index) => {
         const listItem = document.createElement('li');
-        // Highlight the search term in the task text using a span
         const highlightedText = highlightSearch(task.text, searchQuery);
         const textSpan = document.createElement('span');
         textSpan.innerHTML = highlightedText;
