@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa z geolokalizacją i zapisem obrazu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <h1>Mapa z geolokalizacją i zapisem obrazu</h1>
+    <div id="map-container">
+        <div id="map"></div>
+        <div id="buttons">
+            <button id="getLocation">Moja lokalizacja</button>
+            <button id="saveButton">Pobierz mapę</button>
+            <button id="resetButton">Reset Puzzle</button>
+        </div>
+    </div>
+    <h2>Obraz mapy</h2>
+    <canvas id="rasterMap" width="400" height="200"></canvas>
+
+    <h2>Układanka</h2>
+    <div id="puzzle-board">
+        <div class="piece-container" id="pieces">
+            <!-- Fragmenty mapy -->
+        </div>
+        <div class="target-container" id="targets">
+            <!-- Miejsca docelowe -->
+        </div>
+    </div>
+
+    <div id="notification" style="display: none;">Gratulacje! Ułożyłeś mapę poprawnie!</div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-image/leaflet-image.js"></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
