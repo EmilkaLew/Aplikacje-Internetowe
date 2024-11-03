@@ -1,5 +1,3 @@
-// script.js
-
 document.addEventListener("DOMContentLoaded", () => {
     console.log("DOM w pełni załadowany");
 
@@ -7,17 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const pieceContainer = document.getElementById("pieces");
     const targetContainer = document.getElementById("targets");
 
-    // Ustawienia początkowe mapy
+    //Ustawienia początkowe mapy
     let map = L.map('map').setView([53.44868746107255, 14.492275423160033], 18);
 
-    // Dodanie warstwy Esri World Imagery
+    //Dodanie warstwy Esri World Imagery
+    //po to aby mapa wyświetlała obrazy satelitarne
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     }).addTo(map);
 
     let userMarker = null;
 
-    // Pobieranie lokalizacji użytkownika i zapis mapy jako obraz
+    //Pobieranie lokalizacji użytkownika i zapis mapy jako obraz
     document.getElementById("getLocation").addEventListener("click", function() {
         console.log("Przycisk 'Moja lokalizacja' kliknięty");
 
@@ -31,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
-                // Przesunięcie mapy do lokalizacji użytkownika
+                //Przesunięcie mapy do lokalizacji użytkownika
                 map.setView([lat, lon], 15);
 
                 if (userMarker) userMarker.remove();
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         );
     });
 
-    // Funkcja zapisu mapy jako obraz (canvas)
+    //Funkcja zapisu mapy jako obraz
     function saveMapAsImage() {
         leafletImage(map, function(err, canvas) {
             if (err) return console.error("Błąd podczas pobierania mapy:", err);
@@ -59,13 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
             rasterContext.clearRect(0, 0, rasterMap.width, rasterMap.height);
             rasterContext.drawImage(canvas, 0, 0, rasterMap.width, rasterMap.height);
 
-            // Tworzenie fragmentów mapy
+            //Tworzenie fragmentów mapy
             createMapPieces();
-            shufflePieces();
         });
     }
 
-    // Funkcja tworząca fragmenty mapy
+    //Funkcja tworząca fragmenty mapy
     function createMapPieces() {
         pieceContainer.innerHTML = "";
         targetContainer.innerHTML = "";
@@ -97,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
         initializeDragAndDrop();
     }
 
-    // Funkcja tworząca miejsca docelowe
+    //Funkcja tworząca miejsca docelowe
     function createTargets() {
         for (let row = 0; row < 4; row++) {
             for (let col = 0; col < 4; col++) {
@@ -110,16 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Funkcja mieszająca fragmenty mapy
-    function shufflePieces() {
-        const pieces = Array.from(pieceContainer.children);
-        for (let i = pieces.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            pieceContainer.insertBefore(pieces[j], pieces[i]);
-        }
-    }
-
-    // Funkcja inicjująca Drag & Drop
+    //Funkcja inicjująca Drag & Drop
     function initializeDragAndDrop() {
         const items = document.querySelectorAll('.item');
         for (let item of items) {
@@ -158,63 +147,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Funkcja sprawdzająca poprawność ułożenia układanki
+    //Funkcja sprawdzająca poprawność ułożenia układanki
     function checkIfPuzzleIsComplete() {
         const targets = document.querySelectorAll(".drag-target");
-        let allCorrect = true; // Flag to check if all pieces are correctly placed
+        let allCorrect = true; 
     
         targets.forEach(target => {
             const piece = target.firstChild;
             if (!piece) {
-                // If the target is empty, not all pieces are placed
                 allCorrect = false;
                 return;
             }
             
             if (piece.id !== target.dataset.correctPiece) {
-                // If any piece is not in the correct target
                 allCorrect = false;
-                // Notify user that this piece is incorrectly placed
                 showNotification(`Fragment ${piece.id} jest w złym miejscu!`, "error");
             }
         });
         if (allCorrect) {
-            // If all pieces are placed correctly
             showNotification("Gratulacje! Ułożyłeś wszystkie fragmenty poprawnie.", "success");
         }
     }
 
     function showNotification(message, type) {
-    // Log messages to the console
     console.log(message);
     
-    // Optionally, you can still display a message on the page for debugging
     const notification = document.getElementById("notification");
     notification.innerText = message;
-    notification.style.display = "block"; // Show the notification for a brief time
+    notification.style.display = "block"; 
 
-    // Change the style based on type (success or error)
     if (type === "success") {
-        notification.style.color = "#28a745"; // Green for success
+        notification.style.color = "#28a745"; 
     } else if (type === "error") {
-        notification.style.color = "#dc3545"; // Red for error
+        notification.style.color = "#dc3545"; 
     }
 
-    // Hide the notification after 3 seconds
     setTimeout(() => {
-        notification.style.display = "none"; // Hide after 3 seconds
+        notification.style.display = "none"; 
     }, 3000);
     }
 
     document.getElementById("resetButton").addEventListener("click", function() {
-        pieceContainer.innerHTML = ""; // Clear pieces
-        targetContainer.innerHTML = ""; // Clear targets
-        createMapPieces(); // Recreate pieces
-        showNotification("Puzzle zresetowane!"); // Optional notification
+        pieceContainer.innerHTML = ""; 
+        targetContainer.innerHTML = ""; 
+        createMapPieces(); 
+        showNotification("Puzzle zresetowane!"); 
     });
     
-
-    // Przycisk do zapisu mapy jako obraz
     document.getElementById("saveButton").addEventListener("click", function() {
         saveMapAsImage();
     });
