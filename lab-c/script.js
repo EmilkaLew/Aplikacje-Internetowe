@@ -60,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             //Tworzenie fragmentów mapy
             createMapPieces();
+            shufflePieces();
         });
     }
 
@@ -103,6 +104,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 target.dataset.correctPiece = `piece-${row}-${col}`;
                 targetContainer.appendChild(target);
             }
+        }
+    }
+
+    // Losowe przetasowanie fragmentów mapy
+    function shufflePieces() {
+        const pieces = Array.from(pieceContainer.children);
+        for (let i = pieces.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            pieceContainer.insertBefore(pieces[j], pieces[i]);
         }
     }
 
@@ -164,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         if (allCorrect) {
             showNotification("Gratulacje! Ułożyłeś wszystkie fragmenty poprawnie.", "success");
-    
+            showSystemNotification("Gratulacje! Ułożyłeś wszystkie fragmenty poprawnie.");
         }
     }
 
@@ -193,7 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
             } else if (Notification.permission !== "denied"){
                 Notification.requestPermission().then(permission => {
                     if (permission === "granted") {
-                        const notification = new Notification("Hi there!");
+                        new Notification(message);
                     }
                 });
             }
@@ -202,12 +212,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    document.getElementById("resetButton").addEventListener("click", function() {
-        pieceContainer.innerHTML = ""; 
-        targetContainer.innerHTML = ""; 
-        createMapPieces(); 
-        showNotification("Puzzle zresetowane!"); 
-    });
+    // document.getElementById("resetButton").addEventListener("click", function() {
+    //     pieceContainer.innerHTML = ""; 
+    //     targetContainer.innerHTML = ""; 
+    //     createMapPieces(); 
+    //     showNotification("Puzzle zresetowane!"); 
+    // });
     
     document.getElementById("saveButton").addEventListener("click", function() {
         saveMapAsImage();
