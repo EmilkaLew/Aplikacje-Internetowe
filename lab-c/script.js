@@ -69,8 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
         targetContainer.innerHTML = "";
 
         const pieceSize = 50;
-        const context = rasterMap.getContext("2d");
-
         for (let row = 0; row < 4; row++) {
             for (let col = 0; col < 4; col++) {
                 const piece = document.createElement("canvas");
@@ -166,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         if (allCorrect) {
             showNotification("Gratulacje! Ułożyłeś wszystkie fragmenty poprawnie.", "success");
+    
         }
     }
 
@@ -185,6 +184,22 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         notification.style.display = "none"; 
     }, 3000);
+    }
+
+    function showSystemNotification(message){
+        if("Notification" in window) {
+            if (Notification.permission === "granted"){
+                new Notification(message);
+            } else if (Notification.permission !== "denied"){
+                Notification.requestPermission().then(permission => {
+                    if (permission === "granted") {
+                        const notification = new Notification("Hi there!");
+                    }
+                });
+            }
+        } else {
+            alert(message);
+        }
     }
 
     document.getElementById("resetButton").addEventListener("click", function() {
