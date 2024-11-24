@@ -71,26 +71,30 @@ function displayCurrentWeather(data) {
             <p><strong>${data.name}, ${data.sys.country}</strong></p>
             <p class="date-time">${formattedDate} ${formattedTime}</p>
         </div>
-        <p class="temperature"> ${data.main.temp} °C</p> <p>(odczuwalna: ${data.main.feels_like} °C)</p>
+        <p class="temperature"> ${data.main.temp} °C</p> <p>odczuwalna: ${data.main.feels_like} °C</p>
         <p>Opis: ${data.weather[0].description}</p>
         <p>Wilgotność: ${data.main.humidity}%</p>
         <p>Wiatr: ${data.wind.speed} m/s</p>
     `;
+    weatherDiv.style.display = 'block';
 }
 
 //Wyświetlenie prognozy pogody
 function displayWeatherForecast(data) {
     const forecastDiv = document.getElementById('forecast');
     forecastDiv.innerHTML = '<h2>Prognoza pogody</h2>';
+    
     data.list.forEach((item, index) => {
         if (index % 6 === 0) { 
             const date = new Date(item.dt * 1000);
             forecastDiv.innerHTML += `
                 <p><strong>${date.toLocaleString()}</strong></p>
-                <p class="temperature"> ${item.main.temp} °C</p>
+                <p class="temperature"> ${item.main.temp} °C</p> 
+                <p>Odczuwalna: ${item.main.feels_like} °C</p>
                 <p>Opis: ${item.weather[0].description}</p>
                 <hr>
             `;
         }
     });
+    forecastDiv.style.display = 'block';
 }
