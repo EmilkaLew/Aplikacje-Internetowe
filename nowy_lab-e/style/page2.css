@@ -9,7 +9,7 @@ body {
     body::before{
         content: ' ';
         display: block;
-        background-image: url('background2.jpg');
+        background-image: url('../background2.jpg');
         background-size: cover ;
         z-index: -1;
         width: 100%;
@@ -23,7 +23,6 @@ body {
     .header {
         width: 100%;
         padding: 10px;
-        background-color: rgba(85, 209, 91, 0.432);
     }
     .menu{
         float: right;
