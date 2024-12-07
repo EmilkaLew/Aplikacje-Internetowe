@@ -6,3 +6,8 @@ create table post
     subject text not null,
     content text not null
 );
+
+
+
+
+

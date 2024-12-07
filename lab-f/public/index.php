@@ -38,15 +38,50 @@ switch ($action) {
         $controller = new \App\Controller\PostController();
         $view = $controller->deleteAction($_REQUEST['id'], $router);
         break;
+
+    // Obsługa akcji dla Music
+    case 'music-index':
+        $controller = new \App\Controller\MusicController();
+        $view = $controller->indexAction($templating, $router);
+        break;
+    case 'music-create':
+        $controller = new \App\Controller\MusicController();
+        $view = $controller->createAction($_REQUEST['music'] ?? null, $templating, $router);
+        break;
+    case 'music-edit':
+        if (!$_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\MusicController();
+        $view = $controller->editAction($_REQUEST['id'], $_REQUEST['music'] ?? null, $templating, $router);
+        break;
+    case 'music-show':
+        if (!isset($_REQUEST['id']) || empty($_REQUEST['id'])) {
+            // Obsłuż sytuację, gdy brak klucza 'id' lub wartość jest pusta
+            echo "Error: Missing 'id' parameter.";
+            break;
+        }
+        $controller = new \App\Controller\MusicController();
+        $view = $controller->showAction((int)$_REQUEST['id'], $templating, $router);
+        break;
+    case 'music-delete':
+        if (!$_REQUEST['id']) {
+            break;
+        }
+        $controller = new \App\Controller\MusicController();
+        $view = $controller->deleteAction($_REQUEST['id'], $router);
+        break;
+
     case 'info':
         $controller = new \App\Controller\InfoController();
         $view = $controller->infoAction();
         break;
+
     default:
         $view = 'Not found';
         break;
 }
-
-if ($view) {
+if (isset($view)) {
     echo $view;
 }
+
