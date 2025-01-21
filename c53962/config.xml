@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="pl.edu.zut.wi.le53962" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Emilia 53962</name>
+    <description>Weather App</description>
+    <author email="le53962@zut.edu.pl" href="https://wi.zut.edu.pl">
+        Emilia Lewandowska
+    </author>
+    <content src="weather.html" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <platform name="electron">
+    <icon src="res/electron/sun.png" />
+    <preference name="ElectronSettingsFilePath" value="res/electron/settings.json" />
+</platform>
+</widget>
